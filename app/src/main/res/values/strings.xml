@@ -14,14 +14,14 @@
     <string name="dot">.</string>
 
     <string name="plus">+</string>
-    <string name="substring">-</string>
+    <string name="substraction">-</string>
     <string name="times">*</string>
     <string name="divide">/</string>
 
     <string name="bracketStart">(</string>
     <string name="bracketEnd">)</string>
 
-    <string name="clear">C</string>
     <string name="allClear">AC</string>
     <string name="equal">=</string>
+    <string name="backSpace">backSpaceImage</string>
 </resources>

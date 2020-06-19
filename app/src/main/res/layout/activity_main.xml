@@ -21,7 +21,6 @@
         android:textColor="@color/textCalculation"
         android:textAlignment="viewEnd"
         android:maxLines="1"
-        android:text="5555"
         android:textSize="50sp"/>
 
     <TextView
@@ -37,7 +36,6 @@
         android:textColor="@color/textCalculation"
         android:textAlignment="viewEnd"
         android:maxLines="1"
-        android:text="9999"
         android:textSize="55sp"/>
 
     <LinearLayout
@@ -62,20 +60,23 @@
             android:background="@color/background">
 
             <Button
-                android:text="@string/nine"
+                android:text="@string/seven"
+                style="@style/NumberButtonStyle"/>
+            <Button
+                android:text="@string/eight"
                 style="@style/NumberButtonStyle"/>
             <Button
                 android:text="@string/nine"
                 style="@style/NumberButtonStyle"/>
+            <ImageButton
+                android:src="@drawable/backspace"
+                style="@style/OperationButtonStyle"
+                android:contentDescription="@string/backSpace"
+                android:onClick="onBackSpace"/>
             <Button
-                android:text="@string/nine"
-                style="@style/NumberButtonStyle"/>
-            <Button
-                android:text="@string/nine"
-                style="@style/NumberButtonStyle"/>
-            <Button
-                android:text="@string/nine"
-                style="@style/NumberButtonStyle"/>
+                android:text="@string/allClear"
+                style="@style/OperationButtonStyle"
+                android:onClick="onAllClear"/>
 
         </LinearLayout>
         <!--row 2-->
@@ -87,20 +88,22 @@
             android:background="@color/background">
 
             <Button
-                android:text="@string/nine"
+                android:text="@string/four"
                 style="@style/NumberButtonStyle"/>
             <Button
-                android:text="@string/nine"
+                android:text="@string/five"
                 style="@style/NumberButtonStyle"/>
             <Button
-                android:text="@string/nine"
+                android:text="@string/six"
                 style="@style/NumberButtonStyle"/>
+
             <Button
-                android:text="@string/nine"
-                style="@style/NumberButtonStyle"/>
+                style="@style/OperationButtonStyle"
+                android:text="@string/times" />
+
             <Button
-                android:text="@string/nine"
-                style="@style/NumberButtonStyle"/>
+                android:text="@string/divide"
+                style="@style/OperationButtonStyle"/>
 
         </LinearLayout>
         <!--row 3-->
@@ -112,20 +115,20 @@
             android:background="@color/background">
 
             <Button
-                android:text="@string/nine"
+                android:text="@string/one"
                 style="@style/NumberButtonStyle"/>
             <Button
-                android:text="@string/nine"
+                android:text="@string/two"
                 style="@style/NumberButtonStyle"/>
             <Button
-                android:text="@string/nine"
+                android:text="@string/three"
                 style="@style/NumberButtonStyle"/>
             <Button
-                android:text="@string/nine"
-                style="@style/NumberButtonStyle"/>
+                android:text="@string/plus"
+                style="@style/OperationButtonStyle"/>
             <Button
-                android:text="@string/nine"
-                style="@style/NumberButtonStyle"/>
+                android:text="@string/substraction"
+                style="@style/OperationButtonStyle"/>
 
         </LinearLayout>
         <!--row 4-->
@@ -137,45 +140,26 @@
             android:background="@color/background">
 
             <Button
-                android:text="@string/nine"
-                style="@style/NumberButtonStyle"/>
+                android:text="@string/dot"
+                style="@style/OperationButtonStyle"
+                android:onClick="onDot"/>
             <Button
-                android:text="@string/nine"
-                style="@style/NumberButtonStyle"/>
-            <Button
-                android:text="@string/nine"
-                style="@style/NumberButtonStyle"/>
-            <Button
-                android:text="@string/nine"
-                style="@style/NumberButtonStyle"/>
-            <Button
-                android:text="@string/nine"
+                android:text="@string/zero"
                 style="@style/NumberButtonStyle"/>
 
-        </LinearLayout>
-        <!--row 5-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:background="@color/background">
+            <Button
+                style="@style/OperationButtonStyle"
+                android:text="@string/bracketStart"
+                android:onClick="onBracket"/>
 
             <Button
-                android:text="@string/nine"
-                style="@style/NumberButtonStyle"/>
+                android:text="@string/bracketEnd"
+                style="@style/OperationButtonStyle"
+                android:onClick="onBracket"/>
+
             <Button
-                android:text="@string/nine"
-                style="@style/NumberButtonStyle"/>
-            <Button
-                android:text="@string/nine"
-                style="@style/NumberButtonStyle"/>
-            <Button
-                android:text="@string/nine"
-                style="@style/NumberButtonStyle"/>
-            <Button
-                android:text="@string/nine"
-                style="@style/NumberButtonStyle"/>
+                android:text="@string/equal"
+                style="@style/OperationButtonStyle"/>
 
         </LinearLayout>
 
