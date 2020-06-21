@@ -11,17 +11,18 @@
     <TextView
         android:id="@+id/calculationView"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="150dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
         android:layout_marginEnd="0dp"
-        android:textColor="@color/textCalculation"
         android:textAlignment="viewEnd"
-        android:maxLines="1"
-        android:textSize="50sp"/>
+        android:textColor="@color/textCalculation"
+        android:textSize="50sp"
+        android:scrollbars="vertical"
+        android:maxLength="32"/>
 
     <TextView
         android:id="@+id/resultView"
@@ -60,6 +61,37 @@
             android:background="@color/background">
 
             <Button
+                android:text="@string/log"
+                style="@style/OperationButtonStyle"
+                android:textSize="@dimen/log"/>
+            <Button
+                android:text="@string/bracketStart"
+                style="@style/OperationButtonStyle"
+                android:onClick="onBracket"/>
+            <Button
+                android:text="@string/bracketEnd"
+                style="@style/OperationButtonStyle"
+                android:onClick="onBracket"/>
+            <ImageButton
+                android:src="@drawable/backspace"
+                style="@style/OperationButtonStyle"
+                android:contentDescription="@string/backSpace"
+                android:onClick="onBackSpace"/>
+            <Button
+                android:text="@string/allClear"
+                style="@style/OperationButtonStyle"
+                android:onClick="onAllClear"/>
+
+        </LinearLayout>
+        <!--row 2-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:background="@color/background">
+
+            <Button
                 android:text="@string/seven"
                 style="@style/NumberButtonStyle"/>
             <Button
@@ -79,7 +111,7 @@
                 android:onClick="onAllClear"/>
 
         </LinearLayout>
-        <!--row 2-->
+        <!--row 3-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -106,7 +138,7 @@
                 style="@style/OperationButtonStyle"/>
 
         </LinearLayout>
-        <!--row 3-->
+        <!--row 4-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -131,7 +163,7 @@
                 style="@style/OperationButtonStyle"/>
 
         </LinearLayout>
-        <!--row 4-->
+        <!--row 5-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -149,17 +181,18 @@
 
             <Button
                 style="@style/OperationButtonStyle"
-                android:text="@string/bracketStart"
-                android:onClick="onBracket"/>
+                android:text="@string/tenTimes"
+                android:textSize="@dimen/tenTimes"/>
 
             <Button
-                android:text="@string/bracketEnd"
                 style="@style/OperationButtonStyle"
-                android:onClick="onBracket"/>
+                android:text="@string/ans"
+                android:textSize="@dimen/ans"/>
+
 
             <Button
                 android:text="@string/equal"
-                style="@style/OperationButtonStyle"/>
+                style="@style/EqualBtnStyle" />
 
         </LinearLayout>
 

@@ -1,6 +1,14 @@
 <resources>
     <string name="app_name">Calculator</string>
-    
+
+    <dimen name="numberBtn">45sp</dimen>
+    <dimen name="operationBtn">40sp</dimen>
+    <dimen name="equalBtn">50sp</dimen>
+    <dimen name="btnWidth">0dp</dimen>
+    <dimen name="ans">25sp</dimen>
+    <dimen name="log">25sp</dimen>
+    <dimen name="tenTimes">25sp</dimen>
+
     <string name="zero">0</string>
     <string name="one">1</string>
     <string name="two">2</string>
@@ -12,6 +20,8 @@
     <string name="eight">8</string>
     <string name="nine">9</string>
     <string name="dot">.</string>
+    <string name="tenTimes">*10</string>
+    <string name="log">Log</string>
 
     <string name="plus">+</string>
     <string name="substraction">-</string>
@@ -24,4 +34,5 @@
     <string name="allClear">AC</string>
     <string name="equal">=</string>
     <string name="backSpace">backSpaceImage</string>
+    <string name="ans">Ans</string>
 </resources>
