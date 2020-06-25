@@ -12,7 +12,7 @@
         <item name="android:layout_width">@dimen/btnWidth</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:background">#304FFE</item>
+        <item name="android:background">@color/actionBtn</item>
         <item name="android:textSize">@dimen/operationBtn</item>
 
     </style>
@@ -21,7 +21,7 @@
         <item name="android:layout_width">@dimen/btnWidth</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:background">#0288D1</item>
+        <item name="android:background">@color/numberBtn</item>
         <item name="android:textSize">@dimen/numberBtn</item>
         <item name="android:onClick">onDigit</item>
     </style>
@@ -30,7 +30,7 @@
         <item name="android:layout_width">@dimen/btnWidth</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:background">#304FFE</item>
+        <item name="android:background">@color/actionBtn</item>
         <item name="android:textSize">@dimen/equalBtn</item>
 
     </style>

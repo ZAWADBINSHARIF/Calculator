@@ -4,9 +4,9 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#03DAC5</color>
     
-    <color name="background">#000000</color>
+    <color name="background">@color/colorPrimaryDark</color>
     <color name="textCalculation">#FFF</color>
 
-    <color name="actionBtn">#00796B</color>
-    <color name="numberBtn">#FBC02D</color>
+    <color name="actionBtn">#BE454747</color>
+    <color name="numberBtn">#000000</color>
 </resources>

@@ -6,7 +6,9 @@
     <dimen name="equalBtn">50sp</dimen>
     <dimen name="btnWidth">0dp</dimen>
     <dimen name="ans">25sp</dimen>
-    <dimen name="log">25sp</dimen>
+    <dimen name="tan">25sp</dimen>
+    <dimen name="sin">25sp</dimen>
+    <dimen name="cos">25sp</dimen>
     <dimen name="tenTimes">25sp</dimen>
 
     <string name="zero">0</string>
@@ -20,19 +22,21 @@
     <string name="eight">8</string>
     <string name="nine">9</string>
     <string name="dot">.</string>
-    <string name="tenTimes">*10</string>
-    <string name="log">Log</string>
+    <string name="tenTimes">*10^</string>
 
+    <string name="tan">tan</string>
     <string name="plus">+</string>
     <string name="substraction">-</string>
     <string name="times">*</string>
     <string name="divide">/</string>
+    <string name="power">^</string>
 
-    <string name="bracketStart">(</string>
-    <string name="bracketEnd">)</string>
+    <string name="sin">Sin</string>
+    <string name="cos">Cos</string>
 
     <string name="allClear">AC</string>
     <string name="equal">=</string>
     <string name="backSpace">backSpaceImage</string>
     <string name="ans">Ans</string>
+    <string name="rootBtn">Root</string>
 </resources>

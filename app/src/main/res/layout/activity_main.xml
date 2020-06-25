@@ -11,7 +11,7 @@
     <TextView
         android:id="@+id/calculationView"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="300dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
@@ -20,9 +20,8 @@
         android:layout_marginEnd="0dp"
         android:textAlignment="viewEnd"
         android:textColor="@color/textCalculation"
-        android:textSize="50sp"
-        android:scrollbars="vertical"
-        android:maxLength="32"/>
+        android:textSize="40sp"
+        android:padding="16dp"/>
 
     <TextView
         android:id="@+id/resultView"
@@ -37,7 +36,7 @@
         android:textColor="@color/textCalculation"
         android:textAlignment="viewEnd"
         android:maxLines="1"
-        android:textSize="55sp"/>
+        android:textSize="65sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -61,17 +60,19 @@
             android:background="@color/background">
 
             <Button
-                android:text="@string/log"
+                android:text="@string/sin"
                 style="@style/OperationButtonStyle"
-                android:textSize="@dimen/log"/>
+                android:onClick="onSin"
+                android:textSize="@dimen/sin"/>
             <Button
-                android:text="@string/bracketStart"
+                android:text="@string/cos"
                 style="@style/OperationButtonStyle"
-                android:onClick="onBracket"/>
+                android:onClick="onCos"
+                android:textSize="@dimen/cos"/>
             <Button
-                android:text="@string/bracketEnd"
+                android:text="@string/tan"
                 style="@style/OperationButtonStyle"
-                android:onClick="onBracket"/>
+                android:textSize="@dimen/tan"/>
             <ImageButton
                 android:src="@drawable/backspace"
                 style="@style/OperationButtonStyle"
@@ -100,15 +101,14 @@
             <Button
                 android:text="@string/nine"
                 style="@style/NumberButtonStyle"/>
-            <ImageButton
-                android:src="@drawable/backspace"
-                style="@style/OperationButtonStyle"
-                android:contentDescription="@string/backSpace"
-                android:onClick="onBackSpace"/>
             <Button
-                android:text="@string/allClear"
-                style="@style/OperationButtonStyle"
-                android:onClick="onAllClear"/>
+                android:text="@string/power"
+                style="@style/OperationButtonStyle"/>
+           <ImageButton
+               style="@style/OperationButtonStyle"
+               android:src="@drawable/root_icon"
+               android:contentDescription="@string/rootBtn" />
+
 
         </LinearLayout>
         <!--row 3-->
@@ -131,11 +131,13 @@
 
             <Button
                 style="@style/OperationButtonStyle"
-                android:text="@string/times" />
+                android:text="@string/times"
+                android:onClick="onOperator"/>
 
             <Button
                 android:text="@string/divide"
-                style="@style/OperationButtonStyle"/>
+                style="@style/OperationButtonStyle"
+                android:onClick="onOperator"/>
 
         </LinearLayout>
         <!--row 4-->
@@ -157,10 +159,12 @@
                 style="@style/NumberButtonStyle"/>
             <Button
                 android:text="@string/plus"
-                style="@style/OperationButtonStyle"/>
+                style="@style/OperationButtonStyle"
+                android:onClick="onOperator"/>
             <Button
                 android:text="@string/substraction"
-                style="@style/OperationButtonStyle"/>
+                style="@style/OperationButtonStyle"
+                android:onClick="onOperator"/>
 
         </LinearLayout>
         <!--row 5-->
@@ -178,21 +182,18 @@
             <Button
                 android:text="@string/zero"
                 style="@style/NumberButtonStyle"/>
-
             <Button
                 style="@style/OperationButtonStyle"
                 android:text="@string/tenTimes"
                 android:textSize="@dimen/tenTimes"/>
-
             <Button
                 style="@style/OperationButtonStyle"
                 android:text="@string/ans"
                 android:textSize="@dimen/ans"/>
-
-
             <Button
                 android:text="@string/equal"
-                style="@style/EqualBtnStyle" />
+                style="@style/EqualBtnStyle"
+                android:onClick="onEqual"/>
 
         </LinearLayout>
 
