@@ -10,6 +10,7 @@
     <dimen name="sin">25sp</dimen>
     <dimen name="cos">25sp</dimen>
     <dimen name="tenTimes">25sp</dimen>
+    <dimen name="sOp">25sp</dimen>
 
     <string name="zero">0</string>
     <string name="one">1</string>

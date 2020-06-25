@@ -11,7 +11,7 @@
     <TextView
         android:id="@+id/calculationView"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="250dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
@@ -21,13 +21,25 @@
         android:textAlignment="viewEnd"
         android:textColor="@color/textCalculation"
         android:textSize="40sp"
-        android:padding="16dp"/>
+        android:padding="16dp" />
+
+    <TextView
+        android:id="@+id/sOp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/calculationView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:gravity="end"
+        android:textSize="@dimen/sOp" />
 
     <TextView
         android:id="@+id/resultView"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_below="@+id/calculationView"
+        android:layout_below="@+id/sOp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="0dp"

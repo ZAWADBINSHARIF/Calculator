@@ -1,6 +1,7 @@
 package com.example.calculator
 
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
@@ -14,11 +15,13 @@ class MainActivity : AppCompatActivity() {
     var sResult = 0.0
     private var sNum1 by Delegates.notNull<Boolean>()
     private var sNum2 by Delegates.notNull<Boolean>()
-    var sOp = ""
+    var sOp = "sOp.text"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        calculationView.movementMethod = ScrollingMovementMethod()
 
         var sNum1 = false
         var sNum2 = true
@@ -30,6 +33,7 @@ class MainActivity : AppCompatActivity() {
 
     fun onOperator(view: View) {
         val op = (view as Button).text
+
         val numberShow = resultView.text.toString()
 
         if (!sNum1) {
@@ -78,32 +82,43 @@ class MainActivity : AppCompatActivity() {
                     calculationView.append("$numberShow+")
                     num2 = numberShow.toDouble()
                     storeOP(resultView)
+                    sNum1 = false
+                    sNum2 = true
                 }
                 "-" -> {
                     calculationView.append("$numberShow-")
                     num2 = numberShow.toDouble()
                     storeOP(resultView)
+                    sNum1 = false
+                    sNum2 = true
                 }
                 "*" -> {
                     calculationView.append("$numberShow*")
                     num2 = numberShow.toDouble()
                     storeOP(resultView)
+                    sNum1 = false
+                    sNum2 = true
                 }
                 "/" -> {
                     calculationView.append("$numberShow/")
                     num2 = numberShow.toDouble()
                     storeOP(resultView)
+                    sNum1 = false
+                    sNum2 = true
                 }
             }
         }
     }
 
     fun onBackSpace(view: View) {
+        val text = resultView.text.subSequence(0, resultView.text.length-1)
 
+        resultView.append(text)
     }
 
     fun onAllClear(view: View) {
-
+        calculationView.text = ""
+        resultView.text = ""
     }
 
     fun onDot(view: View) {
@@ -119,7 +134,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onEqual(view: View) {
-
+        resultView.text = sResult.toString()
+        calculationView.text = ""
     }
 
 }
