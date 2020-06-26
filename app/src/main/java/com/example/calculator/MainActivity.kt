@@ -4,121 +4,66 @@ import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.view.View
 import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity() {
 
-    var num1 = 0.0
-    var num2 = 0.0
-    var sResult = 0.0
-    private var sNum1 by Delegates.notNull<Boolean>()
-    private var sNum2 by Delegates.notNull<Boolean>()
-    var sOp = "sOp.text"
+    private var num1 = 0.0
+    private var num2 = 0.0
+    private var sResult = 0.0
+    var sNum1 = false
+    var sNum2 = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        calculationView.movementMethod = ScrollingMovementMethod()
-
         var sNum1 = false
         var sNum2 = true
+
+        calculationView.movementMethod = ScrollingMovementMethod()
     }
 
     fun onDigit(view: View) {
+        resultView.text = ""
         resultView.append((view as Button).text)
     }
 
     fun onOperator(view: View) {
-        val op = (view as Button).text
-
         val numberShow = resultView.text.toString()
 
+
         if (!sNum1) {
-            when(op) {
-                "+" -> {
-                    num1 = numberShow.toDouble()
-                    calculationView.append("$numberShow+")
-                    resultView.text = ""
-                    sNum1 = true
-                    sNum2 = false
-                    sOp = "+"
-                }
-                "-" -> {
-                    num1 = numberShow.toDouble()
-                    calculationView.append("$numberShow-")
-                    resultView.text = ""
-                    sNum1 = true
-                    sNum1 = true
-                    sNum2 = false
-                    sOp = "-"
-                }
-                "*" -> {
-                    num1 = numberShow.toDouble()
-                    calculationView.append("$numberShow*")
-                    resultView.text = ""
-                    sNum1 = true
-                    sNum1 = true
-                    sNum2 = false
-                    sOp = "*"
-                }
-                "/" -> {
-                    num1 = numberShow.toDouble()
-                    calculationView.append("$numberShow/")
-                    resultView.text = ""
-                    sNum1 = true
-                    sNum1 = true
-                    sNum2 = false
-                    sOp = "/"
-                }
-            }
+            storeOpText.text =(view as Button).text
+            num1  = numberShow.toDouble()
+            calculationView.append("$numberShow${storeOpText.text}")
+            resultView.text = ""
+            sNum1 = true
+            sNum2 = false
+        }
+        if (!sNum2) {
+            num2  = numberShow.toDouble()
+            calculationView.append("$numberShow${storeOpText.text}")
+            storeOP(resultView)
+            storeOpText.text =(view as Button).text
+            sNum1 = false
+            sNum2 = true
         }
 
-        if (!sNum2) {
-            when(op) {
-                "+" -> {
-                    calculationView.append("$numberShow+")
-                    num2 = numberShow.toDouble()
-                    storeOP(resultView)
-                    sNum1 = false
-                    sNum2 = true
-                }
-                "-" -> {
-                    calculationView.append("$numberShow-")
-                    num2 = numberShow.toDouble()
-                    storeOP(resultView)
-                    sNum1 = false
-                    sNum2 = true
-                }
-                "*" -> {
-                    calculationView.append("$numberShow*")
-                    num2 = numberShow.toDouble()
-                    storeOP(resultView)
-                    sNum1 = false
-                    sNum2 = true
-                }
-                "/" -> {
-                    calculationView.append("$numberShow/")
-                    num2 = numberShow.toDouble()
-                    storeOP(resultView)
-                    sNum1 = false
-                    sNum2 = true
-                }
-            }
-        }
     }
 
     fun onBackSpace(view: View) {
-        val text = resultView.text.subSequence(0, resultView.text.length-1)
+        val backSpace = resultView.text.substring(0, resultView.text.length-1)
 
-        resultView.append(text)
+        resultView.text = backSpace
     }
 
     fun onAllClear(view: View) {
         calculationView.text = ""
         resultView.text = ""
+        storeOpText.text = ""
     }
 
     fun onDot(view: View) {
@@ -136,6 +81,30 @@ class MainActivity : AppCompatActivity() {
     fun onEqual(view: View) {
         resultView.text = sResult.toString()
         calculationView.text = ""
+    }
+
+    private fun storeOP(showResult : TextView) {
+        var result = sResult
+        if (!storeOpText.equals("")) {
+        when(storeOpText.text) {
+            "+" -> {
+                result = num1.plus(num2)
+                showResult.text = "$result"
+            }
+            "-" -> {
+                result = num1.minus(num2)
+                showResult.text = "$result"
+            }
+            "*" -> {
+                result = num1.times(num2)
+                showResult.text = "$result"
+            }
+            "/" -> {
+                result = num1.div(num2)
+                showResult.text = "$result"
+            }
+        }
+        }
     }
 
 }
