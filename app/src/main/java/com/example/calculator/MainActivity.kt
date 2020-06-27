@@ -4,60 +4,129 @@ import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.view.View
 import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-
-    private var num1 = 0.0
-    private var num2 = 0.0
-    private var sResult = 0.0
-    var sNum1 = false
-    var sNum2 = true
+    private var num1: Double? = null
+    private var num2: Double? = 0.0
+    var showResult = ""
+    var sResult = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var sNum1 = false
-        var sNum2 = true
-
         calculationView.movementMethod = ScrollingMovementMethod()
+
+        sResult = false
     }
 
     fun onDigit(view: View) {
-        resultView.text = ""
-        resultView.append((view as Button).text)
+
+        val numbers = resultView.text.toString()
+        if (!sResult) {
+            resultView.append((view as Button).text)
+        } else {
+            when (num1) {
+                null -> {
+                    if (resultView.text.isNotEmpty() && storeOpText.text.isNotEmpty()) {
+                        calculationView.append("${resultView.text}${storeOpText.text}")
+                    }
+
+                    num1 = numbers.toDouble()
+                    num2 = null
+                    resultView.text = ""
+                }
+            }
+            resultView.text = ""
+            resultView.append((view as Button).text)
+            sResult = false
+        }
     }
 
     fun onOperator(view: View) {
-        val numberShow = resultView.text.toString()
 
+        val numbers = resultView.text.toString()
 
-        if (!sNum1) {
-            storeOpText.text =(view as Button).text
-            num1  = numberShow.toDouble()
-            calculationView.append("$numberShow${storeOpText.text}")
-            resultView.text = ""
-            sNum1 = true
-            sNum2 = false
+        when {
+            num1 == null -> {
+                storeOpText.text = (view as Button).text
+
+                if (resultView.text.isNotEmpty() && storeOpText.text.isNotEmpty()) {
+                    calculationView.append("${resultView.text}${storeOpText.text}")
+                }
+
+                num1 = numbers.toDouble()
+                num2 = null
+                resultView.text = ""
+            }
+
+            num2 == null -> {
+                num2 = numbers.toDouble()
+                if (storeOpText.text == "+" ||
+                    storeOpText.text == "-" ||
+                    storeOpText.text == "*" ||
+                    storeOpText.text == "/"
+                ) {
+
+                    if (num1 !== null && num2 !== null) {
+
+                        if (resultView.text.isNotEmpty() && storeOpText.text.isNotEmpty()) {
+                            calculationView.append("${resultView.text}${storeOpText.text}")
+                        }
+                        val op = storeOpText.text
+                        when (op) {
+
+                            "+" -> {
+                                showResult = "${num1!! + num2!!}"
+                                resultView.text = showResult
+                                storeOpText.text = (view as Button).text
+                                num1 = null
+                                num2 = 0.0
+                                sResult = true
+                            }
+                            "-" -> {
+                                showResult = "${num1!! - num2!!}"
+                                resultView.text = showResult
+                                storeOpText.text = (view as Button).text
+                                num1 = null
+                                num2 = 0.0
+                                sResult = true
+                            }
+                            "*" -> {
+                                showResult = "${num1!! * num2!!}"
+                                resultView.text = showResult
+                                storeOpText.text = (view as Button).text
+                                num1 = null
+                                num2 = 0.0
+                                sResult = true
+                            }
+                            "/" -> {
+                                try {
+                                    showResult = "${num1!! / num2!!}"
+                                } catch (message: Exception) {
+                                    println(message)
+                                }
+                                resultView.text = showResult
+                                storeOpText.text = (view as Button).text
+                                num1 = null
+                                num2 = 0.0
+                                sResult = true
+                            }
+
+                        }
+                    }
+                }
+            }
         }
-        if (!sNum2) {
-            num2  = numberShow.toDouble()
-            calculationView.append("$numberShow${storeOpText.text}")
-            storeOP(resultView)
-            storeOpText.text =(view as Button).text
-            sNum1 = false
-            sNum2 = true
-        }
-
     }
 
     fun onBackSpace(view: View) {
-        val backSpace = resultView.text.substring(0, resultView.text.length-1)
-
-        resultView.text = backSpace
+        if (resultView.text.isNotEmpty()) {
+            val backSpace = resultView.text.substring(0, resultView.text.length - 1)
+            resultView.text = backSpace
+        }
     }
 
     fun onAllClear(view: View) {
@@ -79,32 +148,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onEqual(view: View) {
-        resultView.text = sResult.toString()
-        calculationView.text = ""
-    }
 
-    private fun storeOP(showResult : TextView) {
-        var result = sResult
-        if (!storeOpText.equals("")) {
-        when(storeOpText.text) {
-            "+" -> {
-                result = num1.plus(num2)
-                showResult.text = "$result"
-            }
-            "-" -> {
-                result = num1.minus(num2)
-                showResult.text = "$result"
-            }
-            "*" -> {
-                result = num1.times(num2)
-                showResult.text = "$result"
-            }
-            "/" -> {
-                result = num1.div(num2)
-                showResult.text = "$result"
-            }
-        }
-        }
     }
-
 }
