@@ -24,22 +24,10 @@
         android:padding="16dp" />
 
     <TextView
-        android:id="@+id/storeOpText"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@+id/calculationView"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginEnd="0dp"
-        android:gravity="end"
-        android:textSize="@dimen/sOp" />
-
-    <TextView
         android:id="@+id/resultView"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_below="@+id/storeOpText"
+        android:layout_below="@+id/calculationView"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="0dp"
