@@ -44,9 +44,9 @@ class MainActivity : AppCompatActivity() {
     fun onBackSpace(view: View) {
         if (resultView.text.isNotEmpty()) {
             val backSpace = resultView.text.substring(0, resultView.text.length - 1)
+            val isMinus = resultView.text[0]
             resultView.text = backSpace
 
-            val isMinus = resultView.text[0]
             firstMinus = isMinus == '-'
 
             showOP = isMinus == '-' && resultView.text.toString().length == 1
