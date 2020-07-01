@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         val op = (view as Button).text.toString()
 
-        if (!showOP) {
+        if (!showOP && resultView.text.toString() != "-") {
             calculationView.append("${(view as Button).text}\n")
             showOP = true
             }
@@ -44,9 +44,10 @@ class MainActivity : AppCompatActivity() {
     fun onBackSpace(view: View) {
         if (resultView.text.isNotEmpty()) {
             val backSpace = resultView.text.substring(0, resultView.text.length - 1)
-            val isMinus = resultView.text.any { it == '-' }
 
             resultView.text = backSpace
+
+            val isMinus = resultView.text.any { it == '-' }
 
             if (resultView.text.isEmpty() && !isMinus) {
                 showOP = true
