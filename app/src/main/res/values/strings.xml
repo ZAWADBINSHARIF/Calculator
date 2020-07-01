@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Calculator</string>
 
-    <dimen name="numberBtn">45sp</dimen>
+    <dimen name="numberBtn">40sp</dimen>
     <dimen name="operationBtn">40sp</dimen>
     <dimen name="equalBtn">50sp</dimen>
     <dimen name="btnWidth">0dp</dimen>

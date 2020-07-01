@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
 
             resultView.text = backSpace
 
-            if (resultView.text.isEmpty() || !isMinus) {
+            if (resultView.text.isEmpty() && !isMinus) {
                 showOP = true
                 firstMinus = false
             }
@@ -56,6 +56,15 @@ class MainActivity : AppCompatActivity() {
             if (isMinus && (resultView.text.toString().length > 1)) {
                 showOP = false
                 firstMinus = true
+            }
+
+            if (resultView.text.isNotEmpty()) {
+                if (resultView.text.toString()[resultView.text.toString().length - 1] != '.') {
+                    showOP = false
+                }
+                if (resultView.text.toString()[resultView.text.toString().length - 1] == '.') {
+                    showOP = true
+                }
             }
         }
     }
@@ -68,7 +77,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onDot(view: View) {
+        val isDot = resultView.text.any { it == '.' }
+        val isLastDot = resultView.text.toString()
 
+        if (!isDot && resultView.text.isNotEmpty()) {
+            resultView.append((view as Button).text)
+            showOP = resultView.text.toString()[resultView.text.toString().length - 1] == '.'
+        }
+
+        if (resultView.text.isEmpty()) {
+            resultView.text = "0."
+            showOP = resultView.text.toString()[resultView.text.toString().length - 1] == '.'
+        }
     }
 
     fun onSin(view: View) {
