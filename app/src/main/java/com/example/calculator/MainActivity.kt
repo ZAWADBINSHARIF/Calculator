@@ -29,20 +29,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onDigit(view: View) {
-        showResultCalculation = showResult != null
 
-        if (showResultCalculation == true) {
-            scanOP()
-            showResult = null
+        if (showResultCalculation == true){
             resultView.text = ""
-            resultView.append((view as Button).text)
-            showOP = false
-            firstMinus = true
-        }else {
-            resultView.append((view as Button).text)
-            showOP = false
-            firstMinus = true
+            showResultCalculation = false
         }
+
+        resultView.append((view as Button).text)
+        showOP = false
+        firstMinus = true
+
     }
 
     fun onOperator(view: View) {
@@ -101,6 +97,7 @@ class MainActivity : AppCompatActivity() {
         sResult = 0.0
         showResult = 0.0
         storeOP = null
+        showResultCalculation = null
     }
 
     fun onDot(view: View) {
@@ -127,7 +124,30 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onEqual(view: View) {
+        val showlastChar = calculationView.text.toString().length - 2
+        val removeLastSymbol = calculationView.text.toString()[showlastChar]
+        var showEqual = false
+        val removeDot = showResult.toString().endsWith(".0")
+        val newShowResult = showResult.toString().substring(0, showResult.toString().length - 2)
 
+        if(
+            (
+                    removeLastSymbol == '+' ||
+                    removeLastSymbol == '-' ||
+                    removeLastSymbol == '*' ||
+                    removeLastSymbol == '/'
+                    ) &&
+            !showEqual &&
+            showResultCalculation == true)
+        {
+            calculationView.text = calculationView.text.substring(0, showlastChar)
+            if (removeDot) {
+                calculationView.append("_________\n$newShowResult\n")
+            }else {
+                calculationView.append("_________\n$showResult\n")
+            }
+            showEqual = true
+        }
     }
 
     private fun storeResult(sNumber: String) {
@@ -158,6 +178,7 @@ class MainActivity : AppCompatActivity() {
                     resultView.text = showResult.toString()
                 }
             }
+            showResultCalculation = true
         }
     }
 
@@ -183,8 +204,8 @@ class MainActivity : AppCompatActivity() {
 
                         calculation(storeOP!!)
 
-                        num1 = null
-                        num2 = 0.0
+                        num1 = showResult!!
+                        num2 = null
                         storeOP = "+"
                         calculationView.append("+\n")
                     }
@@ -211,8 +232,8 @@ class MainActivity : AppCompatActivity() {
 
                         calculation(storeOP!!)
 
-                        num1 = null
-                        num2 = 0.0
+                        num1 = showResult!!
+                        num2 = null
                         storeOP = "-"
                         calculationView.append("-\n")
                     }
@@ -239,8 +260,8 @@ class MainActivity : AppCompatActivity() {
 
                         calculation(storeOP!!)
 
-                        num1 = null
-                        num2 = 0.0
+                        num1 = showResult!!
+                        num2 = null
                         storeOP = "*"
                         calculationView.append("*\n")
                     }
@@ -267,14 +288,13 @@ class MainActivity : AppCompatActivity() {
 
                         calculation(storeOP!!)
 
-                        num1 = null
-                        num2 = 0.0
+                        num1 = showResult!!
+                        num2 = null
                         storeOP = "/"
                         calculationView.append("/\n")
                     }
                 }
             }
-
         }
     }
 }
