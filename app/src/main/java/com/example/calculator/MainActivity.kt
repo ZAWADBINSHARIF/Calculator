@@ -19,8 +19,8 @@ class MainActivity : AppCompatActivity() {
     private var storeOP : String? = null
     private var showResultCalculation: Boolean? = null
     private var showEqual = false
-    private var newCalculationNum = 0
-    private val statCalculationText = "\n__________________\nStart Calculation ${++newCalculationNum}\n__________________\n\n"
+    private var newCalculationNum = 1
+    private val statCalculationText = "\n__________________\nStart Calculation ${newCalculationNum}\n__________________\n\n"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
