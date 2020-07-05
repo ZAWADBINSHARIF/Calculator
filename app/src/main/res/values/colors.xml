@@ -4,9 +4,12 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#03DAC5</color>
     
-    <color name="background">@color/colorPrimaryDark</color>
+    <color name="background">#80CBC4</color>
     <color name="textCalculation">#FFF</color>
 
-    <color name="actionBtn">#BE454747</color>
-    <color name="numberBtn">#000000</color>
+    <color name="actionBtnTextColor">#000000</color>
+    <color name="numberBtnTextColor">#000000</color>
+
+    <color name="actionBtn">#0091EA</color>
+    <color name="numberBtn">#304FFE</color>
 </resources>

@@ -5,7 +5,6 @@
     <dimen name="operationBtn">40sp</dimen>
     <dimen name="equalBtn">50sp</dimen>
     <dimen name="btnWidth">0dp</dimen>
-    <dimen name="ans">25sp</dimen>
     <dimen name="tan">25sp</dimen>
     <dimen name="sin">25sp</dimen>
     <dimen name="cos">25sp</dimen>
@@ -38,6 +37,5 @@
     <string name="allClear">AC</string>
     <string name="equal">=</string>
     <string name="backSpace">backSpaceImage</string>
-    <string name="ans">Ans</string>
     <string name="rootBtn">Root</string>
 </resources>

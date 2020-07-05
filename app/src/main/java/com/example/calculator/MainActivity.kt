@@ -14,10 +14,13 @@ class MainActivity : AppCompatActivity() {
     private var firstMinus = false
     private var num1 : Double? = null
     private var num2 : Double? = 0.0
-    private var sResult : Double = 0.0
+    private var sResult : Double? = null
     private var showResult : Double? = null
     private var storeOP : String? = null
     private var showResultCalculation: Boolean? = null
+    private var showEqual = false
+    private var newCalculationNum = 0
+    private val statCalculationText = "\n__________________\nStart Calculation ${++newCalculationNum}\n__________________\n\n"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         calculationView.movementMethod = ScrollingMovementMethod()
         firstMinus = false
 
+        calculationView.append(statCalculationText)
     }
 
     fun onDigit(view: View) {
@@ -45,6 +49,32 @@ class MainActivity : AppCompatActivity() {
 
         val op = (view as Button).text.toString()
 
+        if (showEqual) {
+
+            num1 = null
+            num2 = 0.0
+            sResult = null
+            showResult = null
+            storeOP = null
+            showResultCalculation = null
+            showEqual = false
+
+            if (!showOP && resultView.text.toString() != "-") {
+
+                calculationView.append("\n__________________\nNew Calculation ${++newCalculationNum}\n__________________\n\n")
+
+                scanOP(op)
+
+                showOP = true
+            }
+            if (op == "-" && !firstMinus && resultView.text.isEmpty()) {
+                resultView.append("${(view as Button).text}")
+                showOP = true
+                firstMinus = true
+            }
+
+        } else {
+
         if (!showOP && resultView.text.toString() != "-") {
 
             scanOP(op)
@@ -56,9 +86,18 @@ class MainActivity : AppCompatActivity() {
             showOP = true
             firstMinus = true
         }
+        }
     }
 
     fun onBackSpace(view: View) {
+
+        view.setOnLongClickListener {
+            resultView.text = ""
+            showOP = true
+            firstMinus = false
+            true
+        }
+
         if (resultView.text.isNotEmpty()) {
             val backSpace = resultView.text.substring(0, resultView.text.length - 1)
 
@@ -88,15 +127,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onAllClear(view: View) {
-        calculationView.text = ""
+        newCalculationNum = 0
+        calculationView.text = statCalculationText
         resultView.text = ""
         showOP = true
         firstMinus = false
         num1 = null
         num2 = 0.0
-        sResult = 0.0
-        showResult = 0.0
+        sResult = null
+        showResult = null
         storeOP = null
+        showEqual = false
         showResultCalculation = null
     }
 
@@ -124,11 +165,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onEqual(view: View) {
-        val showlastChar = calculationView.text.toString().length - 2
-        val removeLastSymbol = calculationView.text.toString()[showlastChar]
-        var showEqual = false
-        val removeDot = showResult.toString().endsWith(".0")
-        val newShowResult = showResult.toString().substring(0, showResult.toString().length - 2)
+
+        if (showResult != null) {
+        val showLastChar = calculationView.text.toString().length - 2
+        val removeLastSymbol = calculationView.text.toString()[showLastChar]
+        val removeDot = showResult!!.toString().endsWith(".0")
+        val newShowResult = showResult!!.toString().substring(0, showResult.toString().length - 2)
 
         if(
             (
@@ -137,18 +179,51 @@ class MainActivity : AppCompatActivity() {
                     removeLastSymbol == '*' ||
                     removeLastSymbol == '/'
                     ) &&
-            !showEqual &&
-            showResultCalculation == true)
+                !showEqual &&
+                showResultCalculation == true)
         {
-            calculationView.text = calculationView.text.substring(0, showlastChar)
+            calculationView.text = calculationView.text.substring(0, showLastChar)
             if (removeDot) {
-                calculationView.append("_________\n$newShowResult\n")
+                calculationView.append("__________________\n$newShowResult\n")
             }else {
-                calculationView.append("_________\n$showResult\n")
+                calculationView.append("__________________\n$showResult\n")
             }
             showEqual = true
         }
-    }
+        }
+
+        if (
+            (showResultCalculation == false || showResultCalculation == null) &&
+            num2 == null &&
+            num1 != null &&
+            !showEqual &&
+            resultView.text.isNotEmpty()
+        ) {
+            storeResult(resultView.text.toString())
+            calculationView.append("${resultView.text}\n")
+            num2 = sResult
+
+            calculation(storeOP!!)
+
+            num1 = null
+            num2 = 0.0
+
+            val removeDot = showResult!!.toString().endsWith(".0")
+            val newShowResult = showResult!!.toString().substring(0, showResult.toString().length - 2)
+
+            if (removeDot) {
+                calculationView.append("__________________\n$newShowResult\n")
+                resultView.text = newShowResult
+            }else {
+                calculationView.append("__________________\n$showResult\n")
+                resultView.text = showResult.toString()
+            }
+
+            showEqual = true
+        }
+
+        }
+
 
     private fun storeResult(sNumber: String) {
         sResult = sNumber.toDouble()
@@ -297,4 +372,5 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
 }
