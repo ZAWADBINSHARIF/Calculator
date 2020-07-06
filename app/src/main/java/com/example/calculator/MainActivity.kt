@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     private var showResultCalculation: Boolean? = null
     private var showEqual = false
     private var newCalculationNum = 1
-    private val statCalculationText = "\n__________________\nStart Calculation ${newCalculationNum}\n__________________\n\n"
+    private val statCalculationText = "\n__________________\nStart Calculation ${newCalculationNum}\n__________________\n"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
         calculationView.movementMethod = ScrollingMovementMethod()
         firstMinus = false
 
-        calculationView.append(statCalculationText)
     }
 
     fun onDigit(view: View) {
@@ -59,9 +58,9 @@ class MainActivity : AppCompatActivity() {
             showResultCalculation = null
             showEqual = false
 
-            if (!showOP && resultView.text.toString() != "-") {
+            calculationView.append("\n__________________\nNew Calculation ${++newCalculationNum}\n__________________\n\n")
 
-                calculationView.append("\n__________________\nNew Calculation ${++newCalculationNum}\n__________________\n\n")
+            if (!showOP && resultView.text.toString() != "-") {
 
                 scanOP(op)
 
@@ -127,8 +126,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onAllClear(view: View) {
-        newCalculationNum = 0
-        calculationView.text = statCalculationText
+        newCalculationNum = 1
+        calculationView.text = ""
         resultView.text = ""
         showOP = true
         firstMinus = false

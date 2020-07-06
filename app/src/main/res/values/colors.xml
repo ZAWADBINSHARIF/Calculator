@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#000000</color>
-    <color name="colorPrimaryDark">#0091EA</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimaryDark">#372F2F</color>
+    <color name="colorAccent">#000000</color>
     
-    <color name="background">#2196F3</color>
+    <color name="background">#372F2F</color>
     <color name="textCalculation">#FFF</color>
 
-    <color name="actionBtnTextColor">#000000</color>
-    <color name="numberBtnTextColor">#000000</color>
+    <color name="actionBtnTextColor">#FFFFFF</color>
+    <color name="numberBtnTextColor">#FFFFFF</color>
 
-    <color name="actionBtn">#0091EA</color>
-    <color name="numberBtn">#304FFE</color>
+    <color name="actionBtn">#171717</color>
+    <color name="numberBtn">#000000</color>
 </resources>
