@@ -60,31 +60,37 @@ class MainActivity : AppCompatActivity() {
 
             calculationView.append("\n__________________\nNew Calculation ${++newCalculationNum}\n__________________\n\n")
 
-            if (!showOP && resultView.text.toString() != "-") {
+            when {
+                (!showOP && resultView.text.toString() != "-") -> {
 
-                scanOP(op)
+                    scanOP(op)
 
-                showOP = true
-            }
-            if (op == "-" && !firstMinus && resultView.text.isEmpty()) {
-                resultView.append("${(view as Button).text}")
-                showOP = true
-                firstMinus = true
+                    showOP = true
+                    firstMinus = false
+                }
+                (op == "-" && !firstMinus && resultView.text.isEmpty()) -> {
+                    resultView.append("${(view as Button).text}")
+                    showOP = true
+                    firstMinus = true
+                }
             }
 
         } else {
 
-        if (!showOP && resultView.text.toString() != "-") {
+            when {
+                (!showOP && resultView.text.toString() != "-") -> {
 
-            scanOP(op)
+                    scanOP(op)
 
-            showOP = true
+                    showOP = true
+                    firstMinus = false
+                }
+                (op == "-" && !firstMinus && resultView.text.isEmpty()) -> {
+                    resultView.append("${(view as Button).text}")
+                    showOP = true
+                    firstMinus = true
+                }
             }
-        if (op == "-" && !firstMinus && resultView.text.isEmpty()) {
-            resultView.append("${(view as Button).text}")
-            showOP = true
-            firstMinus = true
-        }
         }
     }
 
