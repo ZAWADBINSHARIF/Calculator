@@ -20,7 +20,11 @@ class MainActivity : AppCompatActivity() {
     private var showResultCalculation: Boolean? = null
     private var showEqual = false
     private var newCalculationNum = 1
-    private val statCalculationText = "\n__________________\nStart Calculation ${newCalculationNum}\n__________________\n"
+    private var isPercentage = false
+    private var canPercentage = false
+    private var canEqual = false
+    private var oneResult = false
+    private var oneEqualtionResult: Double? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +37,12 @@ class MainActivity : AppCompatActivity() {
 
     fun onDigit(view: View) {
 
+        if (!resultView.text.endsWith('%') ||
+            !resultView.text.endsWith("y") ||
+            !resultView.text.startsWith("I") ||
+            !resultView.text.endsWith("N") ||
+            !resultView.text.startsWith("N")) {
+
         if (showResultCalculation == true){
             resultView.text = ""
             showResultCalculation = false
@@ -41,6 +51,8 @@ class MainActivity : AppCompatActivity() {
         resultView.append((view as Button).text)
         showOP = false
         firstMinus = true
+        canPercentage = true
+        }
 
     }
 
@@ -50,13 +62,7 @@ class MainActivity : AppCompatActivity() {
 
         if (showEqual) {
 
-            num1 = null
-            num2 = 0.0
-            sResult = null
-            showResult = null
-            storeOP = null
-            showResultCalculation = null
-            showEqual = false
+            defaultValue()
 
             calculationView.append("\n__________________\nNew Calculation ${++newCalculationNum}\n__________________\n\n")
 
@@ -132,18 +138,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onAllClear(view: View) {
-        newCalculationNum = 1
         calculationView.text = ""
         resultView.text = ""
-        showOP = true
-        firstMinus = false
-        num1 = null
-        num2 = 0.0
-        sResult = null
-        showResult = null
-        storeOP = null
-        showEqual = false
-        showResultCalculation = null
+        newCalculationNum = 1
+        defaultValue()
     }
 
     fun onDot(view: View) {
@@ -167,6 +165,30 @@ class MainActivity : AppCompatActivity() {
 
     fun onCos(view: View) {
 
+    }
+
+    fun onPercentage(view: View) {
+        if (!isPercentage && canPercentage) {
+            resultView.append((view as Button).text)
+            isPercentage = true
+            canPercentage = true
+            oneEquation(resultView.text.toString())
+        }
+    }
+
+    fun onINV(view: View) {
+        if (resultView.text.isNotEmpty()) {
+            val invNum = "${resultView.text.toString().toDouble() * -1}"
+
+            val removeDot = invNum.endsWith(".0")
+            val newShowResult = invNum.substring(0, invNum.toString().length - 2)
+
+            if (removeDot) {
+                resultView.text = newShowResult
+            }else {
+                resultView.text = invNum
+            }
+        }
     }
 
     fun onEqual(view: View) {
@@ -227,11 +249,30 @@ class MainActivity : AppCompatActivity() {
             showEqual = true
         }
 
+        if (!showEqual && canEqual) {
+            resultView.text = "$oneEqualtionResult"
+            calculationView.append("$oneEqualtionResult\n")
+            showEqual = true
+            canEqual = false
+        }
         }
 
 
-    private fun storeResult(sNumber: String) {
-        sResult = sNumber.toDouble()
+    private fun storeResult(sNumber: String) : Double {
+
+        return when {
+
+            resultView.text.endsWith('%') -> {
+                val percentageNumber = sNumber.substring(0, sNumber.length - 1)
+                sResult = (percentageNumber.toDouble()) / 100
+                sResult as Double
+            }
+
+            else -> {
+                sResult = sNumber.toDouble()
+                sResult as Double
+            }
+        }
     }
 
     private fun calculation(storeOP: String) {
@@ -380,6 +421,38 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun oneEquation(Values: String) : Double {
+        return when {
+        resultView.text.endsWith('%') -> {
+            val percentageNumber = Values.substring(0, Values.length - 1)
+            oneEqualtionResult = (percentageNumber.toDouble()) / 100
+            canEqual = true
+            oneEqualtionResult as Double
+        }
+            else -> {
+                oneEqualtionResult = null
+                return oneEqualtionResult as Double
+            }
+        }
+    }
+
+    private fun defaultValue() {
+        showOP = true
+        firstMinus = false
+        num1 = null
+        num2 = 0.0
+        sResult = null
+        showResult = null
+        storeOP  = null
+        showResultCalculation = null
+        showEqual = false
+        isPercentage = false
+        canPercentage = false
+        canEqual = false
+        oneResult = false
+        oneEqualtionResult = null
     }
 
 }

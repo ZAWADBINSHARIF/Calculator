@@ -24,7 +24,6 @@
     <string name="dot">.</string>
     <string name="tenTimes">*10^</string>
 
-    <string name="tan">tan</string>
     <string name="plus">+</string>
     <string name="substraction">-</string>
     <string name="times">*</string>
@@ -33,6 +32,12 @@
 
     <string name="sin">Sin</string>
     <string name="cos">Cos</string>
+    <string name="tan">tan</string>
+    <string name="log">Log</string>
+    <string name="Percentage">%</string>
+    <string name="pie">π</string>
+    <string name="factorial">!</string>
+    <string name="inv">±</string>
 
     <string name="allClear">AC</string>
     <string name="equal">=</string>

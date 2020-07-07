@@ -52,6 +52,40 @@
         android:layout_marginBottom="0dp"
         android:orientation="vertical"
         android:background="@color/background">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:background="@color/background">
+
+            <Button
+                android:text="@string/log"
+                style="@style/OperationButtonStyle"
+                android:textSize="@dimen/sin"/>
+            <Button
+                android:text="@string/Percentage"
+                style="@style/OperationButtonStyle"
+                android:textSize="@dimen/sin"
+                android:onClick="onPercentage"/>
+            <Button
+                android:text="@string/factorial"
+                style="@style/OperationButtonStyle"
+                android:textSize="@dimen/sin"/>
+            <Button
+                android:text="@string/pie"
+                style="@style/OperationButtonStyle"
+                android:textSize="@dimen/sin"/>
+            <Button
+                android:text="@string/inv"
+                style="@style/OperationButtonStyle"
+                android:textSize="@dimen/sin"
+                android:onClick="onINV"/>
+
+
+        </LinearLayout>
+
         <!--row 1-->
         <LinearLayout
             android:layout_width="match_parent"
