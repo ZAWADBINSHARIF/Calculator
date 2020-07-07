@@ -62,7 +62,17 @@ class MainActivity : AppCompatActivity() {
 
         if (showEqual) {
 
-            defaultValue()
+            showOP = false
+            firstMinus = false
+            showResult = null
+            storeOP  = null
+            showResultCalculation = false
+            showEqual = false
+            isPercentage = false
+            canPercentage = false
+            canEqual = false
+            oneResult = false
+            oneEqualtionResult = null
 
             calculationView.append("\n__________________\nNew Calculation ${++newCalculationNum}\n__________________\n\n")
 
@@ -141,7 +151,20 @@ class MainActivity : AppCompatActivity() {
         calculationView.text = ""
         resultView.text = ""
         newCalculationNum = 1
-        defaultValue()
+        showOP = true
+        firstMinus = false
+        num1 = null
+        num2 = 0.0
+        sResult = null
+        showResult = null
+        storeOP  = null
+        showResultCalculation = null
+        showEqual = false
+        isPercentage = false
+        canPercentage = false
+        canEqual = false
+        oneResult = false
+        oneEqualtionResult = null
     }
 
     fun onDot(view: View) {
@@ -254,6 +277,7 @@ class MainActivity : AppCompatActivity() {
             calculationView.append("$oneEqualtionResult\n")
             showEqual = true
             canEqual = false
+            showResultCalculation = true
         }
         }
 
