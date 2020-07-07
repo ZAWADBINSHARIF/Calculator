@@ -103,7 +103,7 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        if (resultView.text.isNotEmpty()) {
+        if (resultView.text.isNotEmpty() && !resultView.text.endsWith("y") && !resultView.text.startsWith("I")) {
             val backSpace = resultView.text.substring(0, resultView.text.length - 1)
 
             resultView.text = backSpace
@@ -263,115 +263,119 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun scanOP(op: String) {
-        when(op) {
-            "+" -> {
-                when {
-                    num1 == null && num2 == 0.0 -> {
-                        storeResult(resultView.text.toString())
-                        calculationView.append("${resultView.text}\n")
-                        calculationView.append("+\n")
-                        resultView.text = ""
 
-                        num1 = sResult
-                        num2 = null
-                        storeOP = "+"
-                    }
+        if (!resultView.text.startsWith("N") || !resultView.text.endsWith("N")) {
 
-                    num2 == null && num1 != null -> {
-                        storeResult(resultView.text.toString())
-                        calculationView.append("${resultView.text}\n")
-                        num2 = sResult
+            when(op) {
+                "+" -> {
+                    when {
+                        num1 == null && num2 == 0.0 -> {
+                            storeResult(resultView.text.toString())
+                            calculationView.append("${resultView.text}\n")
+                            calculationView.append("+\n")
+                            resultView.text = ""
 
-                        calculation(storeOP!!)
+                            num1 = sResult
+                            num2 = null
+                            storeOP = "+"
+                        }
 
-                        num1 = showResult!!
-                        num2 = null
-                        storeOP = "+"
-                        calculationView.append("+\n")
-                    }
-                }
-            }
+                        num2 == null && num1 != null -> {
+                            storeResult(resultView.text.toString())
+                            calculationView.append("${resultView.text}\n")
+                            num2 = sResult
 
-            "-" -> {
-                when {
-                    num1 == null && num2 == 0.0 -> {
-                        storeResult(resultView.text.toString())
-                        calculationView.append("${resultView.text}\n")
-                        calculationView.append("-\n")
-                        resultView.text = ""
+                            calculation(storeOP!!)
 
-                        num1 = sResult
-                        num2 = null
-                        storeOP = "-"
-                    }
-
-                    num2 == null && num1 != null -> {
-                        storeResult(resultView.text.toString())
-                        calculationView.append("${resultView.text}\n")
-                        num2 = sResult
-
-                        calculation(storeOP!!)
-
-                        num1 = showResult!!
-                        num2 = null
-                        storeOP = "-"
-                        calculationView.append("-\n")
+                            num1 = showResult!!
+                            num2 = null
+                            storeOP = "+"
+                            calculationView.append("+\n")
+                        }
                     }
                 }
-            }
 
-            "*" -> {
-                when {
-                    num1 == null && num2 == 0.0 -> {
-                        storeResult(resultView.text.toString())
-                        calculationView.append("${resultView.text}\n")
-                        calculationView.append("*\n")
-                        resultView.text = ""
+                "-" -> {
+                    when {
+                        num1 == null && num2 == 0.0 -> {
+                            storeResult(resultView.text.toString())
+                            calculationView.append("${resultView.text}\n")
+                            calculationView.append("-\n")
+                            resultView.text = ""
 
-                        num1 = sResult
-                        num2 = null
-                        storeOP = "*"
-                    }
+                            num1 = sResult
+                            num2 = null
+                            storeOP = "-"
+                        }
 
-                    num2 == null && num1 != null -> {
-                        storeResult(resultView.text.toString())
-                        calculationView.append("${resultView.text}\n")
-                        num2 = sResult
+                        num2 == null && num1 != null -> {
+                            storeResult(resultView.text.toString())
+                            calculationView.append("${resultView.text}\n")
+                            num2 = sResult
 
-                        calculation(storeOP!!)
+                            calculation(storeOP!!)
 
-                        num1 = showResult!!
-                        num2 = null
-                        storeOP = "*"
-                        calculationView.append("*\n")
+                            num1 = showResult!!
+                            num2 = null
+                            storeOP = "-"
+                            calculationView.append("-\n")
+                        }
                     }
                 }
-            }
 
-            "/" -> {
-                when {
-                    num1 == null && num2 == 0.0 -> {
-                        storeResult(resultView.text.toString())
-                        calculationView.append("${resultView.text}\n")
-                        calculationView.append("/\n")
-                        resultView.text = ""
+                "*" -> {
+                    when {
+                        num1 == null && num2 == 0.0 -> {
+                            storeResult(resultView.text.toString())
+                            calculationView.append("${resultView.text}\n")
+                            calculationView.append("*\n")
+                            resultView.text = ""
 
-                        num1 = sResult
-                        num2 = null
-                        storeOP = "/"
+                            num1 = sResult
+                            num2 = null
+                            storeOP = "*"
+                        }
+
+                        num2 == null && num1 != null -> {
+                            storeResult(resultView.text.toString())
+                            calculationView.append("${resultView.text}\n")
+                            num2 = sResult
+
+                            calculation(storeOP!!)
+
+                            num1 = showResult!!
+                            num2 = null
+                            storeOP = "*"
+                            calculationView.append("*\n")
+                        }
                     }
+                }
 
-                    num2 == null && num1 != null -> {
-                        storeResult(resultView.text.toString())
-                        calculationView.append("${resultView.text}\n")
-                        num2 = sResult
+                "/" -> {
+                    when {
+                        num1 == null && num2 == 0.0 -> {
+                            storeResult(resultView.text.toString())
+                            calculationView.append("${resultView.text}\n")
+                            calculationView.append("/\n")
+                            resultView.text = ""
 
-                        calculation(storeOP!!)
+                            num1 = sResult
+                            num2 = null
+                            storeOP = "/"
+                        }
 
-                        num1 = showResult!!
-                        num2 = null
-                        storeOP = "/"
-                        calculationView.append("/\n")
+                        num2 == null && num1 != null -> {
+                            storeResult(resultView.text.toString())
+                            calculationView.append("${resultView.text}\n")
+                            num2 = sResult
+
+                            calculation(storeOP!!)
+
+                            num1 = showResult!!
+                            num2 = null
+                            storeOP = "/"
+                            calculationView.append("/\n")
+                        }
                     }
                 }
             }
