@@ -20,11 +20,10 @@ class MainActivity : AppCompatActivity() {
     private var showResultCalculation: Boolean? = null
     private var showEqual = false
     private var newCalculationNum = 1
-    private var isPercentage = false
     private var canPercentage = false
-    private var canEqual = false
     private var oneResult = false
-    private var oneEqualtionResult: Double? = null
+    private var oneEquationResult: Double? = null
+    private var canFactorial = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,16 +31,16 @@ class MainActivity : AppCompatActivity() {
 
         calculationView.movementMethod = ScrollingMovementMethod()
         firstMinus = false
-
     }
 
     fun onDigit(view: View) {
 
-        if (!resultView.text.endsWith('%') ||
-            !resultView.text.endsWith("y") ||
-            !resultView.text.startsWith("I") ||
-            !resultView.text.endsWith("N") ||
-            !resultView.text.startsWith("N")) {
+        if (    !(resultView.text.endsWith('%') ||
+                resultView.text.endsWith("y") ||
+                resultView.text.startsWith("I") ||
+                resultView.text.endsWith("N") ||
+                resultView.text.startsWith("N")||
+                    resultView.text.endsWith('!'))) {
 
         if (showResultCalculation == true){
             resultView.text = ""
@@ -60,51 +59,55 @@ class MainActivity : AppCompatActivity() {
 
         val op = (view as Button).text.toString()
 
-        if (showEqual) {
+        if (        !(resultView.text.endsWith("y") ||
+                    resultView.text.startsWith("I") ||
+                    resultView.text.endsWith("N") ||
+                    resultView.text.startsWith("N") ||
+                    resultView.text.isEmpty())) {
+            if (showEqual) {
 
-            showOP = false
-            firstMinus = false
-            showResult = null
-            storeOP  = null
-            showResultCalculation = false
-            showEqual = false
-            isPercentage = false
-            canPercentage = false
-            canEqual = false
-            oneResult = false
-            oneEqualtionResult = null
+                showOP = false
+                firstMinus = false
+                showResult = null
+                storeOP = null
+                showResultCalculation = false
+                showEqual = false
+                canPercentage = false
+                oneResult = false
+                oneEquationResult = null
 
-            calculationView.append("\n__________________\nNew Calculation ${++newCalculationNum}\n__________________\n\n")
+                calculationView.append("\n__________________\nNew Calculation ${++newCalculationNum}\n__________________\n\n")
 
-            when {
-                (!showOP && resultView.text.toString() != "-") -> {
+                when {
+                    (!showOP && resultView.text.toString() != "-") -> {
 
-                    scanOP(op)
+                        scanOP(op)
 
-                    showOP = true
-                    firstMinus = false
+                        showOP = true
+                        firstMinus = false
+                    }
+                    (op == "-" && !firstMinus && resultView.text.isEmpty()) -> {
+                        resultView.append("${(view as Button).text}")
+                        showOP = true
+                        firstMinus = true
+                    }
                 }
-                (op == "-" && !firstMinus && resultView.text.isEmpty()) -> {
-                    resultView.append("${(view as Button).text}")
-                    showOP = true
-                    firstMinus = true
-                }
-            }
 
-        } else {
+            } else {
 
-            when {
-                (!showOP && resultView.text.toString() != "-") -> {
+                when {
+                    (!showOP && resultView.text.toString() != "-") -> {
 
-                    scanOP(op)
+                        scanOP(op)
 
-                    showOP = true
-                    firstMinus = false
-                }
-                (op == "-" && !firstMinus && resultView.text.isEmpty()) -> {
-                    resultView.append("${(view as Button).text}")
-                    showOP = true
-                    firstMinus = true
+                        showOP = true
+                        firstMinus = false
+                    }
+                    (op == "-" && !firstMinus && resultView.text.isEmpty()) -> {
+                        resultView.append("${(view as Button).text}")
+                        showOP = true
+                        firstMinus = true
+                    }
                 }
             }
         }
@@ -119,7 +122,7 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        if (resultView.text.isNotEmpty() && !resultView.text.endsWith("y") && !resultView.text.startsWith("I")) {
+        if (resultView.text.isNotEmpty()) {
             val backSpace = resultView.text.substring(0, resultView.text.length - 1)
 
             resultView.text = backSpace
@@ -160,11 +163,10 @@ class MainActivity : AppCompatActivity() {
         storeOP  = null
         showResultCalculation = null
         showEqual = false
-        isPercentage = false
         canPercentage = false
-        canEqual = false
+
         oneResult = false
-        oneEqualtionResult = null
+        oneEquationResult = null
     }
 
     fun onDot(view: View) {
@@ -182,25 +184,39 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun onSin(view: View) {
-
-    }
-
-    fun onCos(view: View) {
-
-    }
-
     fun onPercentage(view: View) {
-        if (!isPercentage && canPercentage) {
+        val showPercentage = resultView.text.contains('%')
+        if (!showPercentage && canPercentage) {
             resultView.append((view as Button).text)
-            isPercentage = true
             canPercentage = true
-            oneEquation(resultView.text.toString())
         }
     }
 
+    fun onFactorial(view: View) {
+        val showFactorial = resultView.text.contains('!')
+        if (!showFactorial && canFactorial) {
+            resultView.append((view as Button).text)
+            canFactorial = true
+        }
+    }
+
+    private fun factorial(num: Double): Double {
+        var factorial : Double = 1.0
+
+        for (i in 1..num.toInt())
+            factorial *= i
+
+        this.oneEquationResult = factorial
+        return oneEquationResult as Double
+    }
+
     fun onINV(view: View) {
-        if (resultView.text.isNotEmpty()) {
+        if (resultView.text.isNotEmpty() &&
+            !(resultView.text.endsWith("y") ||
+                    resultView.text.startsWith("I") ||
+                    resultView.text.endsWith("N") ||
+                    resultView.text.startsWith("N")))
+        {
             val invNum = "${resultView.text.toString().toDouble() * -1}"
 
             val removeDot = invNum.endsWith(".0")
@@ -235,8 +251,10 @@ class MainActivity : AppCompatActivity() {
             calculationView.text = calculationView.text.substring(0, showLastChar)
             if (removeDot) {
                 calculationView.append("__________________\n$newShowResult\n")
+                resultView.text = newShowResult
             }else {
                 calculationView.append("__________________\n$showResult\n")
+                resultView.text = showResult.toString()
             }
             showEqual = true
         }
@@ -272,11 +290,21 @@ class MainActivity : AppCompatActivity() {
             showEqual = true
         }
 
-        if (!showEqual && canEqual) {
-            resultView.text = "$oneEqualtionResult"
-            calculationView.append("$oneEqualtionResult\n")
+        if ((resultView.text.contains('%')) ||
+            (resultView.text.contains('!'))) {
+            oneEquation(resultView.text.toString())
+
+            val removeDot = oneEquationResult!!.toString().endsWith(".0")
+            val newOneEquationResult = oneEquationResult!!.toString().substring(0, oneEquationResult.toString().length - 2)
+
+            if(removeDot) {
+                resultView.text = newOneEquationResult
+                calculationView.append("\n$newOneEquationResult\n\n")
+            }else{
+                resultView.text = "$oneEquationResult"
+                calculationView.append("\n$oneEquationResult\n\n")
+            }
             showEqual = true
-            canEqual = false
             showResultCalculation = true
         }
         }
@@ -289,6 +317,12 @@ class MainActivity : AppCompatActivity() {
             resultView.text.endsWith('%') -> {
                 val percentageNumber = sNumber.substring(0, sNumber.length - 1)
                 sResult = (percentageNumber.toDouble()) / 100
+                sResult as Double
+            }
+
+            resultView.text.endsWith('!') -> {
+                val factorialNumber = sNumber.substring(0, sNumber.length - 1)
+                factorial(factorialNumber.toDouble())
                 sResult as Double
             }
 
@@ -447,36 +481,23 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun oneEquation(Values: String) : Double {
+    private fun oneEquation(Values: String) : Double? {
         return when {
         resultView.text.endsWith('%') -> {
             val percentageNumber = Values.substring(0, Values.length - 1)
-            oneEqualtionResult = (percentageNumber.toDouble()) / 100
-            canEqual = true
-            oneEqualtionResult as Double
+            oneEquationResult = (percentageNumber.toDouble()) / 100
+            oneEquationResult as Double
+        }
+
+        resultView.text.endsWith('!') -> {
+            val factorialNumber = Values.substring(0, Values.length - 1)
+            val fact = factorialNumber.toDouble()
+            factorial(fact)
         }
             else -> {
-                oneEqualtionResult = null
-                return oneEqualtionResult as Double
+                oneEquationResult = null
+                return oneEquationResult as Double
             }
         }
     }
-
-    private fun defaultValue() {
-        showOP = true
-        firstMinus = false
-        num1 = null
-        num2 = 0.0
-        sResult = null
-        showResult = null
-        storeOP  = null
-        showResultCalculation = null
-        showEqual = false
-        isPercentage = false
-        canPercentage = false
-        canEqual = false
-        oneResult = false
-        oneEqualtionResult = null
-    }
-
 }

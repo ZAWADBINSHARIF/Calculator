@@ -7,7 +7,7 @@
     <color name="background">#FFFFFF</color>
     <color name="textCalculation">#1A237E</color>
 
-    <color name="actionBtnTextColor">#000000</color>
+    <color name="actionBtnTextColor">#FFFFFF</color>
     <color name="numberBtnTextColor">#000000</color>
 
     <color name="actionBtn">#512DA8</color>

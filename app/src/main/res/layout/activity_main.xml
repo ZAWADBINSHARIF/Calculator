@@ -36,8 +36,9 @@
         android:layout_marginEnd="0dp"
         android:textColor="@color/textCalculation"
         android:textAlignment="viewEnd"
-        android:maxLines="1"
-        android:textSize="65sp" />
+        android:maxLines="2"
+        android:textSize="25sp"
+        android:maxLength="55"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -72,7 +73,8 @@
             <Button
                 android:text="@string/factorial"
                 style="@style/OperationButtonStyle"
-                android:textSize="@dimen/sin"/>
+                android:textSize="@dimen/sin"
+                android:onClick="onFactorial"/>
             <Button
                 android:text="@string/pie"
                 style="@style/OperationButtonStyle"
