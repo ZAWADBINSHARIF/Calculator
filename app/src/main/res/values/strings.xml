@@ -30,11 +30,12 @@
     <string name="divide">/</string>
     <string name="power">^</string>
 
-    <string name="sin">Sin</string>
-    <string name="cos">Cos</string>
-    <string name="tan">tan</string>
-    <string name="log">Log</string>
+    <string name="sin">SIN</string>
+    <string name="cos">COS</string>
+    <string name="tan">TAN</string>
+    <string name="log">LOG</string>
     <string name="Percentage">%</string>
+    <string name="root">√</string>
     <string name="pie">π</string>
     <string name="factorial">!</string>
     <string name="inv">±</string>
@@ -42,5 +43,4 @@
     <string name="allClear">AC</string>
     <string name="equal">=</string>
     <string name="backSpace">backSpaceImage</string>
-    <string name="rootBtn">Root</string>
 </resources>

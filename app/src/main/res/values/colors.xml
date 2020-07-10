@@ -7,9 +7,9 @@
     <color name="background">#FFFFFF</color>
     <color name="textCalculation">#1A237E</color>
 
-    <color name="actionBtnTextColor">#FFFFFF</color>
+    <color name="actionBtnTextColor">#000000</color>
     <color name="numberBtnTextColor">#000000</color>
 
-    <color name="actionBtn">#512DA8</color>
-    <color name="numberBtn">#00BFA5</color>
+    <color name="actionBtn">#FBC02D</color>
+    <color name="numberBtn">#EF6C00</color>
 </resources>

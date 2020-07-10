@@ -64,7 +64,9 @@
             <Button
                 android:text="@string/log"
                 style="@style/OperationButtonStyle"
-                android:textSize="@dimen/sin"/>
+                android:textSize="@dimen/sin"
+                android:onClick="onLog"/>
+
             <Button
                 android:text="@string/Percentage"
                 style="@style/OperationButtonStyle"
@@ -78,7 +80,8 @@
             <Button
                 android:text="@string/pie"
                 style="@style/OperationButtonStyle"
-                android:textSize="@dimen/sin"/>
+                android:textSize="@dimen/sin"
+                android:onClick="onPI"/>
             <Button
                 android:text="@string/inv"
                 style="@style/OperationButtonStyle"
@@ -99,17 +102,18 @@
             <Button
                 android:text="@string/sin"
                 style="@style/OperationButtonStyle"
-                android:onClick="onSin"
-                android:textSize="@dimen/sin"/>
+                android:textSize="@dimen/sin"
+                android:onClick="onSin"/>
             <Button
                 android:text="@string/cos"
                 style="@style/OperationButtonStyle"
-                android:onClick="onCos"
-                android:textSize="@dimen/cos"/>
+                android:textSize="@dimen/cos"
+                android:onClick="onCos"/>
             <Button
                 android:text="@string/tan"
                 style="@style/OperationButtonStyle"
-                android:textSize="@dimen/tan"/>
+                android:textSize="@dimen/tan"
+                android:onClick="onTan"/>
             <ImageButton
                 android:id="@+id/backspace"
                 android:src="@drawable/backspace"
@@ -141,11 +145,12 @@
                 style="@style/NumberButtonStyle"/>
             <Button
                 android:text="@string/power"
-                style="@style/OperationButtonStyle"/>
-           <ImageButton
-               style="@style/OperationButtonStyle"
-               android:src="@drawable/root_icon"
-               android:contentDescription="@string/rootBtn" />
+                style="@style/OperationButtonStyle"
+                android:onClick="onPower"/>
+            <Button
+                style="@style/OperationButtonStyle"
+                android:text="@string/root"
+                android:onClick="onRoot" />
 
 
         </LinearLayout>
@@ -223,11 +228,12 @@
             <Button
                 style="@style/OperationButtonStyle"
                 android:text="@string/tenTimes"
-                android:textSize="@dimen/tenTimes"/>
+                android:textSize="@dimen/tenTimes"
+                android:onClick="onTenPow"/>
             <Button
                 android:text="@string/equal"
                 style="@style/EqualBtnStyle"
-                android:onClick="onEqual"/>
+                android:onClick="onEqual" />
 
         </LinearLayout>
 
