@@ -349,7 +349,7 @@ class MainActivity : AppCompatActivity() {
 
             resultView.text.endsWith('!') -> {
                 val factorialNumber = sNumber.substring(0, sNumber.length - 1)
-                factorial(factorialNumber.toDouble())
+                 sResult = factorial(factorialNumber.toDouble())
                 sResult as Double
             }
 
