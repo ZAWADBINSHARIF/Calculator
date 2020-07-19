@@ -629,7 +629,7 @@ class MainActivity : AppCompatActivity() {
                 val num = tenPow[0]
                 val powerNum = tenPow[1]
 
-                oneEquationResult = (num.toDouble() * 10).pow(powerNum.toDouble())
+                oneEquationResult = num.toDouble() * (10.toDouble().pow(powerNum.toDouble()))
                 canTenPow = false
                 oneEquationResult as Double
             }
